@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-""" Script that  Starts a Flash Web Application """
+"""Starts a Flask Web Application using web_static content."""
 
 from models import storage
 from models.state import State
@@ -16,13 +16,13 @@ app = Flask(__name__)
 
 @app.teardown_appcontext
 def close_db(error):
-    """ Remove the current SQLAlchemy Session """
+    """Close the current SQLAlchemy Session."""
     storage.close()
 
 
 @app.route('/2-hbnb/', strict_slashes=False)
 def hbnb():
-    """ HBNB is alive! """
+    """"""
     states = storage.all(State).values()
     states = sorted(states, key=lambda k: k.name)
     st_ct = []
