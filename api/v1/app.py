@@ -1,12 +1,12 @@
 #!/usr/bin/python3
-""" Flask Application """
-from models import storage
+"""HBNB RESTful API built with Flask"""
 from api.v1.views import app_views
-from os import environ
 from flask import Flask, render_template, make_response, jsonify
 from flask_cors import CORS
 from flasgger import Swagger
 from flasgger.utils import swag_from
+from models import storage
+from os import environ
 
 
 app = Flask(__name__)
@@ -23,12 +23,7 @@ def close_db(error):
 
 @app.errorhandler(404)
 def not_found(error):
-    """ 404 Error
-    ---
-    responses:
-      404:
-        description: a resource was not found
-    """
+    """Handle Error 404, resource not found."""
     return make_response(jsonify({'error': "Not found"}), 404)
 
 app.config['SWAGGER'] = {
